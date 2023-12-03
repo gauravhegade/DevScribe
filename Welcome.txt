@@ -1,0 +1,30 @@
+Welcome to DevScribe Text Editor!
+
+DevScribe is a versatile text editor that provides a range of features to enhance your text editing experience. Its designed to cater developers.
+
+Features:
+1. Theme Customization:
+   - You can personalize the editor theme to suit your preferences. Choose from a variety of themes to create the perfect writing environment.
+
+2. File Management:
+   - Easily open, close, and create new text files from the File menu. Managing your documents is a breeze.
+
+3. Tabbed Editor Interface:
+   - Work on multiple files simultaneously with the tabbed editor interface. Each file is represented in a separate tab for easy access.
+
+4. Text Editing:
+   - DevScribe provides all the essential text editing tools you need, including copy, cut, paste, undo, and redo.
+
+5. Zoomable Text:
+   - Adjust the text size to your liking with the zoom feature. Perfect for detailed editing or comfortable reading.
+
+6. Drag and Drop:
+   - Drag and drop files directly into the editor to open them quickly. No need to navigate through directories.
+
+7. Code Snippets:
+   - Access a library of commonly used code snippets to streamline your coding tasks.
+   
+8. Word Wrap:
+   - Ability to toggle word wrap so as to make the code more readable in the same view port, rather than scrolling past it.
+
+Feel free to type, edit, and format your text here to explore the capabilities of DevScribe. Enjoy your text editing experience!

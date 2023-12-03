@@ -5,13 +5,6 @@ import java.io.*;
 import javax.swing.text.Segment;
 import org.fife.ui.rsyntaxtextarea.*;
 
-/**
- * Scanner for the SL programming language.
- * <p>
- *
- * @author Félix Pedrozo
- * @version 1.0
- */
 public class SLTokenMaker extends AbstractJFlexCTokenMaker {
 
     /**

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+// inheritance and interface implementation
 public class DialogBox extends JDialog implements ActionListener {
     private int buttonIndex;
     public static final int INFORMATION = 0, ERROR = 1, WARNING = 2;
@@ -21,6 +22,7 @@ public class DialogBox extends JDialog implements ActionListener {
      * @param messageType The type of message (INFORMATION, ERROR, or WARNING).
      */
 
+    // polymorphism - overrides the default JDialog constructor
     private DialogBox(JFrame parent, String message, String title, String[] options, int messageType) {
         super(parent, true); // Create a modal dialog box.
         setTitle(title);

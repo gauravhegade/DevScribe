@@ -173,10 +173,11 @@ public class EditorUI extends JFrame {
     private JMenuBar configureMenuBar() {
         JMenuBar jMenuBar = new JMenuBar();
 
-        // Menus.
+        // Menus
         JMenu jmenuNewFile = new JMenu("File");
         JMenu jmenuEdit = new JMenu("Edit");
         JMenu jmenuView = new JMenu("View");
+        // JMenu jmenuHelp = new JMenu("Help");
 
         confMenuFile(jmenuNewFile);
         confMenuEdit(jmenuEdit);
@@ -185,6 +186,7 @@ public class EditorUI extends JFrame {
         jMenuBar.add(jmenuNewFile);
         jMenuBar.add(jmenuEdit);
         jMenuBar.add(jmenuView);
+        // jMenuBar.add(jmenuHelp);
 
         activateMenuItem(false);
 
@@ -198,7 +200,7 @@ public class EditorUI extends JFrame {
         jMenuItemUndo.setIcon(new ImageIcon(getClass().getResource("icon/undo.png")));
         jMenuItemUndo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK));
 
-        jMenuItemRedo = new JMenuItem("redo");
+        jMenuItemRedo = new JMenuItem("Redo");
         jMenuItemRedo.addActionListener(menuItemEvents);
         jMenuItemRedo.setActionCommand("jMenuItemRedo");
         jMenuItemRedo.setIcon(new ImageIcon(getClass().getResource("icon/redo.png")));
@@ -282,10 +284,8 @@ public class EditorUI extends JFrame {
         jCheckBoxWordWrap.setActionCommand("jCheckBoxWordWrap");
         jCheckBoxWordWrap.addActionListener(menuItemEvents);
 
-
-
         JMenu jmenuTheme = new JMenu("Select Theme");
-        confMenuTema(jmenuTheme);
+        confMenuTheme(jmenuTheme);
 
         menu.add(jMenuItemIncreaseFont);
         menu.add(jMenuItemDecreaseFont);
@@ -300,77 +300,77 @@ public class EditorUI extends JFrame {
 
     }
 
-    private void confMenuTema(JMenu menu) {
-        String nombreTema = UserConfig.getString(KEY_THEME);
+    private void confMenuTheme(JMenu menu) {
+        String themeName = UserConfig.getString(KEY_THEME);
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem menuItem;
 
         menuItem = new JRadioButtonMenuItem("IntelliJ");
         menuItem.setActionCommand("intelli-j");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
 
         menuItem = new JRadioButtonMenuItem("Dracula");
         menuItem.setActionCommand("darcula");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
 
         menuItem = new JRadioButtonMenuItem("Dark");
         menuItem.setActionCommand("dark");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
 
         menuItem = new JRadioButtonMenuItem("Darkii");
         menuItem.setActionCommand("darkii");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
 
         menuItem = new JRadioButtonMenuItem("RSTA 1");
         menuItem.setActionCommand("default");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
 
         menuItem = new JRadioButtonMenuItem("RSTA 2");
         menuItem.setActionCommand("default-alt");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
 
         menuItem = new JRadioButtonMenuItem("Eclipse");
         menuItem.setActionCommand("eclipse");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
 
         menuItem = new JRadioButtonMenuItem("Idle");
         menuItem.setActionCommand("idle");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
 
         menuItem = new JRadioButtonMenuItem("Monokai");
         menuItem.setActionCommand("monokai");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
 
         menuItem = new JRadioButtonMenuItem("Visual Studio");
         menuItem.setActionCommand("vs");
-        menuItem.setSelected(menuItem.getActionCommand().equals(nombreTema));
+        menuItem.setSelected(menuItem.getActionCommand().equals(themeName));
         menuItem.addActionListener(menuItemEvents);
         group.add(menuItem);
         menu.add(menuItem);
@@ -417,7 +417,6 @@ public class EditorUI extends JFrame {
         jMenuItemExit.setActionCommand("jMenuItemExit");
         jMenuItemExit.addActionListener(menuItemEvents);
 
-        // Menu archivo, carga de menu item.
         menu.add(jMenuItemNewFile);
         menu.add(jMenuItemOpenFile);
         menu.addSeparator();
@@ -434,21 +433,21 @@ public class EditorUI extends JFrame {
         jpTab.setOpaque(false);
         jpTab.setLayout(new BoxLayout(jpTab, BoxLayout.X_AXIS));
 
-        JLabel nombreArchivo = new JLabel(editor.getFile().getName());
+        JLabel fileName = new JLabel(editor.getFile().getName());
 
-        final JLabel jlCerrar = new JLabel(new ImageIcon(getClass().getResource("icon/c1.png")));
-        jlCerrar.setName(editor.getFile().getAbsolutePath());
-        jlCerrar.addMouseListener(new MouseAdapter() {
+        final JLabel jlClose = new JLabel(new ImageIcon(getClass().getResource("icon/c1.png")));
+        jlClose.setName(editor.getFile().getAbsolutePath());
+        jlClose.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getButton() == MouseEvent.BUTTON1) {
-                    JLabel jlCerrar = (JLabel) e.getSource();
+                    JLabel jlClose = (JLabel) e.getSource();
 
                     TextEditor TextEditor;
                     for (int i = 0; i < jTabbedPane.getTabCount(); i++) {
                         TextEditor = (TextEditor) jTabbedPane.getComponentAt(i);
 
-                        if (TextEditor.getFile().getAbsolutePath().equals(jlCerrar.getName())) {
+                        if (TextEditor.getFile().getAbsolutePath().equals(jlClose.getName())) {
                             tabClose(TextEditor);
                             break;
                         }
@@ -458,17 +457,17 @@ public class EditorUI extends JFrame {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                jlCerrar.setIcon(new ImageIcon(getClass().getResource("icon/c2.png")));
+                jlClose.setIcon(new ImageIcon(getClass().getResource("icon/c2.png")));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                jlCerrar.setIcon(new ImageIcon(getClass().getResource("icon/c1.png")));
+                jlClose.setIcon(new ImageIcon(getClass().getResource("icon/c1.png")));
             }
         });
-        jpTab.add(nombreArchivo);
+        jpTab.add(fileName);
         jpTab.add(Box.createHorizontalStrut(5));
-        jpTab.add(jlCerrar);
+        jpTab.add(jlClose);
 
         return jpTab;
     }
@@ -494,11 +493,9 @@ public class EditorUI extends JFrame {
     }
 
     private void tabUpdate(String title, int index) {
-        // Extraigo el label del panel.
         JPanel panel = (JPanel) jTabbedPane.getTabComponentAt(index);
-        JLabel jlNombreArchivo = (JLabel) panel.getComponent(0);
-        // Actualizo el nombre del archivo.
-        jlNombreArchivo.setText(title);
+        JLabel jlFileName = (JLabel) panel.getComponent(0);
+        jlFileName.setText(title);
     }
 
     private void insertNewEditor(TextEditor editor) {
@@ -571,7 +568,7 @@ public class EditorUI extends JFrame {
                         break;
 
                     // 2 means user cancelled the operation
-                    case 2: 
+                    case 2:
                         return;
                 }
 
@@ -589,17 +586,17 @@ public class EditorUI extends JFrame {
         }
     }
 
-    private int showDialogSaveChanges(String nombreArchivo) {
+    private int showDialogSaveChanges(String file_name) {
         internalWindowActivated = true;
-        String message = "The file" + nombreArchivo + " has been modified. Save changes?";
+        String message = "The file " + file_name + " has been modified. Save changes?";
         String[] bt = { "Save", "Don't Save", "Cancel" };
 
         return DialogBox.show(this, message, "Save Changes", bt, DialogBox.INFORMATION);
     }
 
-    private int showDialogReloadFile(String nombreArchivo) {
+    private int showDialogReloadFile(String file_name) {
         internalWindowActivated = true;
-        String message = "The file " + nombreArchivo + " has been modified. Do you want to reload it?";
+        String message = "The file " + file_name + " has been modified. Do you want to reload it?";
         String[] bt = { "Yes", "No" };
 
         return DialogBox.show(this, message, "Reload file", bt, DialogBox.INFORMATION);
@@ -644,12 +641,12 @@ public class EditorUI extends JFrame {
         }
     }
 
-    private void activeEditorTheme(String nombreTema) {
+    private void activeEditorTheme(String themeName) {
         TextEditor TextEditor;
         for (int i = 0; i < jTabbedPane.getTabCount(); i++) {
             TextEditor = (TextEditor) jTabbedPane.getComponentAt(i);
 
-            TextEditor.updateTheme(nombreTema);
+            TextEditor.updateTheme(themeName);
         }
     }
 
@@ -658,19 +655,19 @@ public class EditorUI extends JFrame {
             TextEditor editor = (TextEditor) jTabbedPane.getSelectedComponent();
 
             if (fileStatusList.containsKey(editor.getFile().getAbsolutePath())) {
-                String textoArhivo = ReadFile.read(editor.getFile());
+                String textFile = ReadFile.read(editor.getFile());
 
-                StateFile textoArchivoAlSalir = fileStatusList.remove(editor.getFile().getAbsolutePath());
+                StateFile textFileOnExit = fileStatusList.remove(editor.getFile().getAbsolutePath());
                 String textoEditor = editor.getText();
 
-                if (textoArchivoAlSalir.isUpdated()) {
-                    if (!textoEditor.equals(textoArhivo))
-                        editor.setText(textoArhivo);
+                if (textFileOnExit.isUpdated()) {
+                    if (!textoEditor.equals(textFile))
+                        editor.setText(textFile);
 
                 } else {
-                    if (!textoArhivo.equals(textoArchivoAlSalir.getContenido()) && !textoEditor.equals(textoArhivo)) {
+                    if (!textFile.equals(textFileOnExit.getContenido()) && !textoEditor.equals(textFile)) {
                         if (showDialogReloadFile(editor.getFile().getName()) == 0)
-                            editor.setText(textoArhivo);
+                            editor.setText(textFile);
                     }
                 }
             }

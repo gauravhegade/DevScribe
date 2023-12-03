@@ -302,11 +302,10 @@ public class TextEditor extends JPanel {
     void setWordWrap(boolean status) {
         textArea.setWrapStyleWord(status);
         textArea.setLineWrap(status);
-
     }
 
     void updateFont() {
-        Font font = new Font(Font.MONOSPACED, Font.PLAIN, fontSize);
+        Font font = new Font("JetBrains Mono", Font.PLAIN, fontSize);
 
         textArea.setFont(font);
         scroll.getGutter().setLineNumberFont(font);
@@ -320,6 +319,9 @@ public class TextEditor extends JPanel {
         CodeTemplate[] ct = {
                 new StaticCodeTemplate("for", "for (int i = 0; i < ", "; i++) {\n\t\n}"),
                 new StaticCodeTemplate("while", "while (", ") {\n\t\n}"),
+                new StaticCodeTemplate("jmain", "public class ",
+                        "{\n\tpublic static void main(String args[]){\n\t\t\n\t}\n}"),
+                new StaticCodeTemplate("cmain", "#include<stdio.h>\n\nint main(){ \n\t", "\n\treturn 0;\n}"),
                 new StaticCodeTemplate("pf", "printf(", ");"),
                 new StaticCodeTemplate("sf", "scanf(", ");"),
                 new StaticCodeTemplate("if", "if (", ") {\n\t\n}"),
